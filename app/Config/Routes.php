@@ -33,10 +33,15 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 // $routes->get('/', 'Home::index');
-$routes->resource('users');
+$routes->resource('user');
+
 $routes->resource('login');
+
 $routes->resource('lapak');
-$routes->resource('categories');
+$routes->get('lapak/category/(:segment)', 'Lapak::category/$1');
+
+$routes->resource('category');
+
 $routes->resource('roles');
 
 /**

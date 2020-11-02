@@ -4,21 +4,27 @@ namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
 
-class Categories extends ResourceController
+class User extends ResourceController
 {
-    protected $modelName = 'App\Models\CategoriesModel';
+    protected $modelName = 'App\Models\UserModel';
     protected $format = 'json';
     public function __construct()
     {
         date_default_timezone_set("Asia/Jakarta");
     }
 
+    //get data seluruh user
+    //http://localhost/users/
+    //method: GET
     public function index()
     {
         $data = $this->model->findAll();
         return $this->respond($data, 200);
     }
 
+    //get data detail user per ID
+    //http://localhost/$id
+    //method: GET
     public function show($id = null)
     {
         $data = $this->model->find($id);

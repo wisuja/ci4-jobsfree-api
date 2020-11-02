@@ -6,20 +6,35 @@ use CodeIgniter\RESTful\ResourceController;
 
 class Lapak extends ResourceController
 {
-    protected $modelName = 'App\Models\LapakModel';
+    protected $modelName = 'App\Models\LapakModel'; //di panggil dengan $this->model
     protected $format = 'json';
+
     public function __construct()
     {
         date_default_timezone_set("Asia/Jakarta");
     }
 
+    //get data lapak secara keseluruhan
+    //http://localhost:8080/lapak/
+    //method: GET
     public function index()
     {
-
         $data = $this->model->findAll();
         return $this->respond($data, 200);
     }
 
+    //get lapak berdasarkan category
+    //http://localhost:8080/lapak/category/$id
+    //method: GET
+    public function category($id)
+    {
+        $data = $this->model->getCategory($id);
+        return $this->respond($data);
+    }
+
+    // get data lapak berdasarkan id lapak
+    // http://localhost:8080/lapak/$id
+    //method: GET
     public function show($id = null)
     {
         $data = $this->model->find($id);
@@ -30,6 +45,9 @@ class Lapak extends ResourceController
         }
     }
 
+    // input lapak
+    //http://localhost/lapak
+    //method : POST
     public function create()
     {
         helper(['form']);
@@ -66,6 +84,10 @@ class Lapak extends ResourceController
         }
     }
 
+    // edit lapak
+    //http://localhost/lapak/$id
+    // method : PUT
+
     public function update($id = null)
     {
         helper(['form']);
@@ -95,6 +117,9 @@ class Lapak extends ResourceController
         }
     }
 
+    // hapus lapak
+    //http://localhost/lapak/$id
+    // method : DELETE
     public function delete($id = null)
     {
         $data = $this->model->find($id);
