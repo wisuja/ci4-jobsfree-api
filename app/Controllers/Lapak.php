@@ -79,7 +79,7 @@ class Lapak extends ResourceController
 
             ];
             $post_id = $this->model->insert($data);
-            $data['post_id'] = $post_id;
+            $data['id'] = $post_id;
             return $this->respondCreated($data);
         }
     }

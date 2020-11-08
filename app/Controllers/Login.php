@@ -2,12 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Models\UsersModel;
 use CodeIgniter\RESTful\ResourceController;
 
 class Login extends ResourceController
 {
-    protected $modelName = 'App\Models\UsersModel';
+    protected $modelName = 'App\Models\UserModel';
     protected $format = 'json';
     public function __construct()
     {
@@ -20,7 +19,6 @@ class Login extends ResourceController
 
     public function create()
     {
-        $user = new UsersModel();
 
         $rules = [
             'email' => 'required',
@@ -33,8 +31,7 @@ class Login extends ResourceController
             $email = $this->request->getVar('email');
             $password = $this->request->getVar('password');
 
-            $user = $user->get_user($email, $password);
-
+            $user = $this->model->get_user($email, $password);
 
             if ($user) {
                 $data = [
