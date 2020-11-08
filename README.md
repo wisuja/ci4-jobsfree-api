@@ -18,25 +18,29 @@ basic configuration
 
 ############################## HTTP REQUEST ############################## 
 
-#############################################
-                USERS
-#############################################
+##Login
+url : http://localhost:8080/login/
+method: POST
+body/params: email, password
 
-request data 'users'
-url : http://localhost:8080/users/
-http request : GET
-params: username, password
-response SUCCESS :
-    status: 200,
-    id_user: "1",
-    username: "tes"
-response FAIL :
-    "status": 404,
-    "error": 404,
-    "messages": {
-        "error": "Item not Found"
-    }
 
-#############################################
-                SERVICES
-#############################################
+##lapak (dapatkan semua data lapak)
+url : http://localhost:8080/lapak/
+method : GET
+body/params: -
+
+##detail lapak
+url : http://localhost:8080/lapak/$id
+method : GET
+body/params: -
+
+##get lapak berdasarkan category
+url : http://localhost:8080/category/$idcategory 
+method : GET
+body/params: -
+
+##buat lapak baru
+url : http://localhost:8080/lapak
+method : POST
+body/params: user_id, category_id, title, description, requirement, price_tag, working_hours, status
+

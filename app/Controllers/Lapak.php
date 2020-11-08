@@ -61,7 +61,7 @@ class Lapak extends ResourceController
             'price_tag' => 'required',
             'working_hours' => 'required',
             'status' => 'required',
-            'creates_on' => 'required',
+
         ];
 
         if (!$this->validate($rules)) {
@@ -76,7 +76,7 @@ class Lapak extends ResourceController
                 'price_tag' => $this->request->getVar('price_tag'),
                 'working_hours' => $this->request->getVar('working_hours'),
                 'status' => $this->request->getVar('status'),
-                'creates_on' => $this->request->getVar('creates_on'),
+
             ];
             $post_id = $this->model->insert($data);
             $data['post_id'] = $post_id;
