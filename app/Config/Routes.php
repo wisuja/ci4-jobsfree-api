@@ -37,8 +37,8 @@ $routes->resource('user');
 
 $routes->resource('login');
 
-$routes->resource('lapak');
 $routes->get('lapak/category/(:segment)', 'Lapak::category/$1');
+$routes->resource('lapak');
 
 $routes->resource('category');
 

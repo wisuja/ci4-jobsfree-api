@@ -14,33 +14,33 @@ basic configuration
     database.default.username = root
     database.default.password = 123
     database.default.DBDriver = MySQLi
-    database.default.DSN = 'mysql:dbname=jobsfree;host=localhost';
+    database.default.DSN = 'mysql:dbname=jobsfree;host=localhost
 
 ############################## HTTP REQUEST ############################## 
 
 ##Login
-url : http://localhost:8080/login/
-method: POST
-body/params: email, password
+1. url : http://localhost:8080/login/
+2. method: POST
+3. body/params: email, password
 
 
 ##lapak (dapatkan semua data lapak)
-url : http://localhost:8080/lapak/
-method : GET
-body/params: -
+1. url : http://localhost:8080/lapak/
+2. method : GET
+3. body/params: -
 
 ##detail lapak
-url : http://localhost:8080/lapak/$id
-method : GET
-body/params: -
+1. url : http://localhost:8080/lapak/$id
+2. method : GET
+3. body/params: -
 
 ##get lapak berdasarkan category
-url : http://localhost:8080/category/$idcategory 
-method : GET
-body/params: -
+1. url : http://localhost:8080/category/$idcategory 
+2. method : GET
+3. body/params: -
 
 ##buat lapak baru
-url : http://localhost:8080/lapak
-method : POST
-body/params: user_id, category_id, title, description, requirement, price_tag, working_hours, status
+1. url : http://localhost:8080/lapak
+2. method : POST
+3. body/params: user_id, category_id, title, description, requirement, price_tag, working_hours, status
 

@@ -34,4 +34,40 @@ class User extends ResourceController
             return $this->failNotFound('Item not Found');
         }
     }
+
+    // public function create()
+    // {
+    //     helper(['form']);
+
+    //     $rules = [
+    //         'role_id' => 'required',
+    //         'name' => 'required',
+    //         'email' => 'required',
+    //         'password' => 'required',
+    //         'image' => 'required',
+    //         'phone_no' => 'required',
+    //         'idcard_no' => 'required',
+    //         'status' => 'required',
+
+    //     ];
+
+    //     if (!$this->validate($rules)) {
+    //         return $this->fail($this->validator->getErrors());
+    //     } else {
+    //         $data = [
+    //             'user_id' => $this->request->getVar('user_id'),
+    //             'category_id' => $this->request->getVar('category_id'),
+    //             'title' => $this->request->getVar('title'),
+    //             'description' => $this->request->getVar('description'),
+    //             'requirement' => $this->request->getVar('requirement'),
+    //             'price_tag' => $this->request->getVar('price_tag'),
+    //             'working_hours' => $this->request->getVar('working_hours'),
+    //             'status' => $this->request->getVar('status'),
+
+    //         ];
+    //         $post_id = $this->model->insert($data);
+    //         $data['id'] = $post_id;
+    //         return $this->respondCreated($data);
+    //     }
+    // }
 }
