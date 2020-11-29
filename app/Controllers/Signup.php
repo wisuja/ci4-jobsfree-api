@@ -4,45 +4,29 @@ namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
 
-class User extends ResourceController
+class Signup extends ResourceController
 {
     protected $modelName = 'App\Models\UserModel';
     protected $format = 'json';
+
     public function __construct()
     {
         date_default_timezone_set("Asia/Jakarta");
     }
 
-    //get data seluruh user
-    //http://localhost/users/
-    //method: GET
     public function index()
     {
-        $data = $this->model->findAll();
-        return $this->respond($data, 200);
     }
 
-    //get data detail user per ID
-    //http://localhost:8080/user/$id
-    //method: GET
-    public function show($id = null)
-    {
-        $data = $this->model->find($id);
-        if ($data) {
-            return $this->respond($data);
-        } else {
-            return $this->failNotFound('Item not Found');
-        }
-    }
-
-    //Edit data user
-    //http://localhost:8080/user/$id
-    //method: PUT
-    public function update($id = null)
+    //Mendaftar userbaru
+    //http://localhost:8080/signup
+    //method: POST
+    public function create()
     {
         helper(['form']);
 
         $rules = [
+            'role_id' => 'required',
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
@@ -54,7 +38,6 @@ class User extends ResourceController
             return $this->fail($this->validator->getErrors());
         } else {
             $data = [
-                'id' => $id,
                 'role_id' =>  $this->request->getVar('role_id'),
                 'name' => $this->request->getVar('name'),
                 'email' => $this->request->getVar('email'),
@@ -62,11 +45,12 @@ class User extends ResourceController
                 'image' => $this->request->getVar('image'),
                 'phone_no' => $this->request->getVar('phone_no'),
                 'idcard_no' => $this->request->getVar('idcard_no'),
-                'update_on' => date("Y-m-d H:i:s"),
+                'creates_on' => date("Y-m-d H:i:s"),
             ];
-
-            $this->model->save($data);
-            return $this->respond($data);
+            $insert = $this->model->insert($data);
+            $data['id'] = $insert;
+            $data['status'] = 200;
+            return $this->respondCreated($data);
         }
     }
 }

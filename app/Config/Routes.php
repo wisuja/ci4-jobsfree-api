@@ -32,7 +32,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-// $routes->get('/', 'Home::index');
+$routes->get('/', 'Home::index');
 $routes->resource('user');
 
 $routes->resource('login');
@@ -40,7 +40,15 @@ $routes->resource('login');
 $routes->get('lapak/category/(:segment)', 'Lapak::category/$1');
 $routes->resource('lapak');
 
+$routes->get('transaction/ongoing/(:segment)', 'Transaction::ongoing/$1');
+$routes->post('transaction/confirm/(:segment)', 'Transaction::confirm/$1');
+$routes->post('transaction/done/(:segment)', 'Transaction::done/$1');
+$routes->resource('transaction');
+
+
 $routes->resource('category');
+
+$routes->resource('signup');
 
 $routes->resource('roles');
 

@@ -44,3 +44,57 @@ basic configuration
 2. method : POST
 3. body/params: user_id, category_id, title, description, requirement, price_tag, working_hours, status
 
+##update lapak
+1. url : http://localhost:8080/lapak/$id
+2. method : PUT
+3. body/params: user_id, category_id, title, description, requirement, price_tag, working_hours, status
+
+##hapus lapak
+1. url : http://localhot:8080/lapak/$id
+2. method : DELETE
+3. body/params: -
+
+##signup
+1. url : http://localhost:8080/signup
+2. method : POST
+3. body/params: role_id, name, email, password, phone_no, idcard_no
+
+##show user
+1. url : http://localhost:8080/user/$id
+2. method : GET
+3. body/params: -
+
+##Update user
+1. url : http://localhost:8080/user/$id
+2. method : PUT
+3. body/params: role_id, name, email, password, phone_no, idcard_no
+
+##buat transaksi 
+1. url : http://localhost:8080/transaction
+2. method : POST
+3. body/params: lapak_id, freelance_id, client_id, payment_date, payment_via
+
+##get detail transaksi
+1. url : http://localhost:8080/transaction/$id
+2. method : GET
+3. body/params: -
+4. catatan : $id adalah id transaksi
+
+##get ongoing transaksi yang kolom status nya masih null
+1. url : http://localhost:8080/transaction/ongoing/$id
+2. method : GET
+3. body/params: -
+4. catatan: $id adalah id user, id client atau id freelancer. 
+
+##terima proses transaksi (jasa)
+1. url : http://localhost:8080/transaction/confirm/$id
+2. method : PUT
+3. body/params: accept
+4. catatan : $id adalah id transaksi
+
+##menyelesaikan transaksi (jasa)
+1. url : http://localhost:8080/transaction/done/$id
+2. method : PUT
+3. body/params: status
+4. catatan: $id adalah id transaksi
+
