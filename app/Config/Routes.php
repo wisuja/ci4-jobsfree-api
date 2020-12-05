@@ -33,6 +33,8 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 $routes->get('/', 'Home::index');
+
+$routes->put('user/update_password/(:segment)', 'User::update_password/$1');
 $routes->resource('user');
 
 $routes->resource('login');

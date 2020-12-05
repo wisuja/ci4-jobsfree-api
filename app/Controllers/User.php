@@ -69,4 +69,22 @@ class User extends ResourceController
             return $this->respond($data);
         }
     }
+
+    // update password
+    // http://localhost:8080/user/update_password/$id
+    // methoed: PUT
+    public function update_password($id = null)
+    {
+        helper(['form']);
+
+        $rules = [
+            'password' => 'required',
+            'new_password' => 'required',
+        ];
+        if (!$this->validate($rules)) {
+            return $this->fail($this->validator->getErrors());
+        } else {
+            $this->model->cek_pswd($this->request->getVar('password'));
+        }
+    }
 }

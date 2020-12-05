@@ -19,7 +19,6 @@ class Login extends ResourceController
 
     public function create()
     {
-
         $rules = [
             'email' => 'required',
             'password' => 'required',
@@ -31,16 +30,27 @@ class Login extends ResourceController
             $email = $this->request->getVar('email');
             $password = $this->request->getVar('password');
 
-            $user = $this->model->get_user($email, $password);
+            $val_email = $this->model->get_email($email);
 
-            if ($user) {
-                $data = [
-                    "status" => 200,
-                    'email' => $user['email'],
-                ];
-                return $this->respond($data, 200);
+            if ($val_email) {
+                $user = $this->model->get_user_password($email, $password);
+                if ($user) {
+                    $data = [
+                        "status" => 200,
+                        'id' => $user['id'],
+                        'email' => $user['email'],
+                        'name' => $user['name'],
+                        'role_id' => $user['role_id'],
+                        'image' => $user['image'],
+                        'phone_no' => $user['phone_no'],
+                        'idcard_no' => $user['idcard_no'],
+                    ];
+                    return $this->respond($data, 200);
+                } else {
+                    return $this->failNotFound('Wrong password');
+                }
             } else {
-                return $this->failNotFound('Item not Found');
+                return $this->failNotFound('Email not Found');
             }
         }
     }

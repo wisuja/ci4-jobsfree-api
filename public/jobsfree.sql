@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.11-MariaDB)
-# Date: 2020-11-02 18:46:30
+# Date: 2020-11-29 19:54:11
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
 
@@ -54,13 +54,13 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "users"
 #
 
-INSERT INTO `users` VALUES (1,1,'garox','garox@gamil.com','123','garox.png','098765','1','08216950020',NULL,NULL),(2,2,'budi setiawan','budi@gmail.com','123','budi.png','082169506727','1','082169506727',NULL,NULL);
+INSERT INTO `users` VALUES (1,1,'garox','garox@gamil.com','123','garox.png','098765','1','08216950020',NULL,NULL),(2,2,'budi setiawan','budi@gmail.com','123','budi.png','082169506727','1','082169506727',NULL,NULL),(3,1,'tedy','teddyfernando@gm','1231','23.jpg','123','123',NULL,NULL,NULL),(4,1,'tedy','teddyfernando@gm','1231','23.jpg','123','123',NULL,NULL,NULL),(5,1,'tedy','teddyfernando@gm','1231','23.jpg','123','123',NULL,NULL,NULL);
 
 #
 # Structure for table "lapak"
@@ -82,13 +82,13 @@ CREATE TABLE `lapak` (
   KEY `category_fk` (`category_id`),
   CONSTRAINT `category_fk` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "lapak"
 #
 
-INSERT INTO `lapak` VALUES (3,2,1,'desain',NULL,NULL,20000,NULL,NULL,NULL),(4,2,2,'desain2',NULL,NULL,NULL,NULL,NULL,NULL),(6,2,2,'desain','none','none',20000,20,'ok',NULL),(7,2,2,'desain','none','none',20000,20,'ok',NULL);
+INSERT INTO `lapak` VALUES (3,2,1,'desain',NULL,NULL,20000,NULL,NULL,NULL),(4,2,2,'desain2',NULL,NULL,NULL,NULL,NULL,NULL),(6,2,2,'desain','none','none',20000,20,'ok',NULL),(7,2,2,'desain','none','none',20000,20,'ok',NULL),(9,2,1,'desain','description','gak ada',0,0,'aktif',NULL);
 
 #
 # Structure for table "transactions"
@@ -101,6 +101,9 @@ CREATE TABLE `transactions` (
   `client_id` int(11) NOT NULL DEFAULT 0,
   `payment_date` int(11) DEFAULT NULL,
   `payment_via` varchar(128) DEFAULT NULL,
+  `accept` varchar(16) DEFAULT NULL,
+  `status` varchar(16) DEFAULT NULL,
+  `creates_on` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `lapak_id` (`lapak_id`),
   KEY `client_fk` (`client_id`),
@@ -108,9 +111,10 @@ CREATE TABLE `transactions` (
   CONSTRAINT `client_fk` FOREIGN KEY (`client_id`) REFERENCES `users` (`id`),
   CONSTRAINT `freelancer_fk` FOREIGN KEY (`freelancer_id`) REFERENCES `users` (`id`),
   CONSTRAINT `lapak_fk` FOREIGN KEY (`lapak_id`) REFERENCES `lapak` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "transactions"
 #
 
+INSERT INTO `transactions` VALUES (2,3,2,1,2020,'GO PAY','1','ok',NULL);
