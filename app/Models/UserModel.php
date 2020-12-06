@@ -23,15 +23,10 @@ class UserModel extends Model
             ->getRowArray();
     }
 
-    function update_pswd($email, $password)
+    function update_pswd($email, $new_password)
     {
-        $query = $this->table('users')
-            ->getWhere(['email' => $email, 'password' => $password])
-            ->getRowArray();
-
-        if ($query) {
-            return $query;
-        } else {
-        }
+        $this->set("password", "$new_password")
+            ->where('email', "$email")
+            ->update();
     }
 }

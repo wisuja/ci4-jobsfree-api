@@ -45,7 +45,6 @@ class User extends ResourceController
         $rules = [
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
             'phone_no' => 'required',
             'idcard_no' => 'required',
         ];
@@ -72,7 +71,7 @@ class User extends ResourceController
 
     // update password
     // http://localhost:8080/user/update_password/$id
-    // methoed: PUT
+    // methoed: POST
     public function update_password($id = null)
     {
         helper(['form']);
@@ -84,7 +83,18 @@ class User extends ResourceController
         if (!$this->validate($rules)) {
             return $this->fail($this->validator->getErrors());
         } else {
-            $this->model->cek_pswd($this->request->getVar('password'));
+            $password = $this->request->getVar('password');
+            $new_password = $this->request->getVar('new_password');
+            $cek = $this->model->get_user_password($id, $password);
+            if (!$cek) {
+                return $this->failNotFound('Wrong password');
+            } else {
+                $this->model->update_pswd($id, $new_password);
+                $data = [
+                    'messages' => 'Password has been changed'
+                ];
+                return $this->respond($data);
+            }
         }
     }
 }

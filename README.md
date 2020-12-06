@@ -18,11 +18,22 @@ basic configuration
 
 ############################## HTTP REQUEST ############################## 
 
+##########################################################################
+#################### REGISTRASI DAN LOGIN ################################
+##########################################################################
 ##Login
 1. url : http://localhost:8080/login/
 2. method: POST
 3. body/params: email, password
 
+##signup
+1. url : http://localhost:8080/signup
+2. method : POST
+3. body/params: role_id, name, email, password, phone_no, idcard_no
+
+##########################################################################
+#################### LAPAK ###############################################
+##########################################################################
 
 ##lapak (dapatkan semua data lapak)
 1. url : http://localhost:8080/lapak/
@@ -54,10 +65,9 @@ basic configuration
 2. method : DELETE
 3. body/params: -
 
-##signup
-1. url : http://localhost:8080/signup
-2. method : POST
-3. body/params: role_id, name, email, password, phone_no, idcard_no
+##########################################################################
+#################### USER ################################################
+##########################################################################
 
 ##show user
 1. url : http://localhost:8080/user/$id
@@ -68,6 +78,10 @@ basic configuration
 1. url : http://localhost:8080/user/$id
 2. method : PUT
 3. body/params: role_id, name, email, password, phone_no, idcard_no
+
+##########################################################################
+#################### TRANSAKSI ###########################################
+##########################################################################
 
 ##buat transaksi 
 1. url : http://localhost:8080/transaction
@@ -87,9 +101,9 @@ basic configuration
 4. catatan: $id adalah id user, id client atau id freelancer. 
 
 ##terima proses transaksi (jasa)
-1. url : http://localhost:8080/transaction/confirm/$id
+1. url : http://localhost:8080/transaction/confirm/$id 
 2. method : PUT
-3. body/params: accept
+3. body/params: accept, isi value jadi 1
 4. catatan : $id adalah id transaksi
 
 ##menyelesaikan transaksi (jasa)
