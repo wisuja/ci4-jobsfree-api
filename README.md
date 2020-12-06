@@ -73,9 +73,14 @@ basic configuration
 - Update user
 1. url : http://localhost:8080/user/$id
 2. method : PUT
-3. body/params: role_id, name, email, password, phone_no, idcard_no
+3. body/params: role_id, name, email,  phone_no, idcard_no
 
-- 
+- Update Password
+1. url : http://localhost:8080/user/update_password/$id
+2. method : POST
+3. body/params : password, new_password
+4. catatan : $id diisi dengan email
+
 ## TRANSAKSI
 
 - buat transaksi 
@@ -97,15 +102,12 @@ basic configuration
 
 - terima proses transaksi (jasa)
 1. url : http://localhost:8080/transaction/confirm/$id 
-2. method : PUT
-3. body/params: accept, isi value jadi 1
+2. method : POST
+3. body/params: accept, isi value jadi 1 (yang penting ga null aja)
 4. catatan : $id adalah id transaksi
 
 - menyelesaikan transaksi (jasa)
 1. url : http://localhost:8080/transaction/done/$id
-2. method : PUT
-3. body/params: status
+2. method : POST
+3. body/params: message
 4. catatan: $id adalah id transaksi
-
-TODO 
-1. KIRIM MESSAGE PADA TRANSACTION/DONE
