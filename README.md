@@ -16,98 +16,92 @@ basic configuration
     database.default.DBDriver = MySQLi
     database.default.DSN = 'mysql:dbname=jobsfree;host=localhost
 
-## ######### HTTP REQUEST ###############
+## HTTP REQUEST
 
-## ######################################
-## ####### REGISTRASI DAN LOGIN #########
-## ######################################
+## REGISTRASI DAN LOGIN 
 
-## Login
+- Login
 1. url : http://localhost:8080/login/
 2. method: POST
 3. body/params: email, password
 
-## signup
+- signup
 1. url : http://localhost:8080/signup
 2. method : POST
 3. body/params: role_id, name, email, password, phone_no, idcard_no
 
-## ###################################
-## ############ LAPAK ################
-## ###################################
 
-## lapak (dapatkan semua data lapak)
+## LAPAK
+
+- lapak (dapatkan semua data lapak)
 1. url : http://localhost:8080/lapak/
 2. method : GET
 3. body/params: -
 
-## detail lapak
+- detail lapak
 1. url : http://localhost:8080/lapak/$id
 2. method : GET
 3. body/params: -
 
-## get lapak berdasarkan category
+- get lapak berdasarkan category
 1. url : http://localhost:8080/category/$idcategory 
 2. method : GET
 3. body/params: -
 
-## buat lapak baru
+- buat lapak baru
 1. url : http://localhost:8080/lapak
 2. method : POST
 3. body/params: user_id, category_id, title, description, requirement, price_tag, working_hours, status
 
-## update lapak
+- update lapak
 1. url : http://localhost:8080/lapak/$id
 2. method : PUT
 3. body/params: user_id, category_id, title, description, requirement, price_tag, working_hours, status
 
-## hapus lapak
+- hapus lapak
 1. url : http://localhot:8080/lapak/$id
 2. method : DELETE
 3. body/params: -
 
-## #####################################
-## ############# USER ##################
-## #####################################
+## USER
 
-## show user
+- show user
 1. url : http://localhost:8080/user/$id
 2. method : GET
 3. body/params: -
 
-## Update user
+- Update user
 1. url : http://localhost:8080/user/$id
 2. method : PUT
 3. body/params: role_id, name, email, password, phone_no, idcard_no
 
-## ###############################
-## ######## TRANSAKSI ############
-## ###############################
+- 
+## TRANSAKSI
 
-## buat transaksi 
+- buat transaksi 
 1. url : http://localhost:8080/transaction
 2. method : POST
 3. body/params: lapak_id, freelance_id, client_id, payment_date, payment_via
 
-## get detail transaksi
+- get detail transaksi
 1. url : http://localhost:8080/transaction/$id
 2. method : GET
 3. body/params: -
 4. catatan : $id adalah id transaksi
 
-## get ongoing transaksi yang kolom status nya masih null
+- get ongoing transaksi yang kolom status nya masih null
 1. url : http://localhost:8080/transaction/ongoing/$id
 2. method : GET
 3. body/params: -
 4. catatan: $id adalah id user, id client atau id freelancer. 
 
-## terima proses transaksi (jasa)
+- terima proses transaksi (jasa)
 1. url : http://localhost:8080/transaction/confirm/$id 
 2. method : PUT
 3. body/params: accept, isi value jadi 1
 4. catatan : $id adalah id transaksi
 
-## menyelesaikan transaksi (jasa)
+- menyelesaikan transaksi (jasa)
 1. url : http://localhost:8080/transaction/done/$id
 2. method : PUT
 3. body/params: status
