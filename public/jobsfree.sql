@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.11-MariaDB)
-# Date: 2020-11-29 19:54:11
+# Date: 2020-12-06 23:03:41
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
 
@@ -43,7 +43,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
   `name` varchar(128) DEFAULT NULL,
-  `email` varchar(16) NOT NULL DEFAULT '',
+  `email` varchar(32) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   `image` varchar(255) DEFAULT NULL,
   `phone_no` varchar(16) DEFAULT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `users` (
 # Data for table "users"
 #
 
-INSERT INTO `users` VALUES (1,1,'garox','garox@gamil.com','123','garox.png','098765','1','08216950020',NULL,NULL),(2,2,'budi setiawan','budi@gmail.com','123','budi.png','082169506727','1','082169506727',NULL,NULL),(3,1,'tedy','teddyfernando@gm','1231','23.jpg','123','123',NULL,NULL,NULL),(4,1,'tedy','teddyfernando@gm','1231','23.jpg','123','123',NULL,NULL,NULL),(5,1,'tedy','teddyfernando@gm','1231','23.jpg','123','123',NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,1,'garox','garox@gmail.com','123','garox.png','098765','1','08216950020',NULL,NULL),(2,2,'budi setiawan','budi@gmail.com','123','budi.png','082169506727','1','082169506727',NULL,NULL),(3,1,'tedy fd','teddyfernando@gmail.com','1231','23.jpg','123','123',NULL,NULL,NULL),(4,1,'adi','adi@gmail.com','1231','23.jpg','123','123',NULL,NULL,NULL),(5,1,'tedy','teddyfernando31@gmail.com','1231','23.jpg','123','123',NULL,NULL,NULL);
 
 #
 # Structure for table "lapak"
@@ -103,7 +103,9 @@ CREATE TABLE `transactions` (
   `payment_via` varchar(128) DEFAULT NULL,
   `accept` varchar(16) DEFAULT NULL,
   `status` varchar(16) DEFAULT NULL,
+  `message` varchar(255) DEFAULT NULL,
   `creates_on` varchar(64) DEFAULT NULL,
+  `finished_on` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `lapak_id` (`lapak_id`),
   KEY `client_fk` (`client_id`),
@@ -117,4 +119,4 @@ CREATE TABLE `transactions` (
 # Data for table "transactions"
 #
 
-INSERT INTO `transactions` VALUES (2,3,2,1,2020,'GO PAY','1','ok',NULL);
+INSERT INTO `transactions` VALUES (2,3,2,1,2020,'GO PAY','1','1','okes',NULL,'2020-12-06 22:20'),(3,3,2,1,2020,NULL,NULL,NULL,NULL,NULL,NULL),(5,3,2,1,NULL,'gopay',NULL,NULL,NULL,NULL,NULL),(6,3,2,1,NULL,'gopay',NULL,NULL,NULL,NULL,NULL);
