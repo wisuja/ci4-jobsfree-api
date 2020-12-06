@@ -60,7 +60,17 @@ class Transaction extends ResourceController
     public function ongoing($id = null)
     {
         $data = $this->model->ongoing($id);
+        if ($data) {
+            return $this->respond($data);
+        } else {
+            return $this->failNotFound('Item not Found');
+        }
+    }
 
+    //GET transaksi yang sudah selesai
+    public function finish($id = null)
+    {
+        $data = $this->model->finish($id);
         if ($data) {
             return $this->respond($data);
         } else {
@@ -69,7 +79,7 @@ class Transaction extends ResourceController
     }
 
     //konfirmasi pengerjaan untuk jasa. terima atau batal
-    //method : PUT
+    //method : POST
     public function confirm($id = null)
     {
         helper(['form']);
@@ -90,20 +100,23 @@ class Transaction extends ResourceController
     }
 
     //transaksi yang selesai
-    //Method : PUT
+    //Method : POST
     public function done($id = null)
     {
         helper(['form']);
 
         $rules = [
-            'status' => 'required',
+            'message' => 'required',
         ];
         if (!$this->validate($rules)) {
             return $this->fail($this->validator->getErrors());
         } else {
+          
             $data = [
                 'id' => $id,
-                'status' => $this->request->getVar('status'),
+                'status' => 1,
+                'message' => $this->request->getVar('message'),
+                'finished_on' => date("Y-m-d H:i:s"),
             ];
             $this->model->save($data);
             return $this->respond($data);

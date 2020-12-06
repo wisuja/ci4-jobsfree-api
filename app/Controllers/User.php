@@ -91,6 +91,7 @@ class User extends ResourceController
             } else {
                 $this->model->update_pswd($id, $new_password);
                 $data = [
+                    'status' => 200,
                     'messages' => 'Password has been changed'
                 ];
                 return $this->respond($data);
