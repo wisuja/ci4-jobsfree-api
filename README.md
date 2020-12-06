@@ -1,7 +1,7 @@
 # api_jobsfree
 API aplikasi Jobsfree
 
-############################## CodeIgniter4 ############################## 
+######## CodeIgniter4 ##########
 
 basic configuration
 1.  import database dengan file sql pada folder sql/api_jobsfree.sql
@@ -16,11 +16,11 @@ basic configuration
     database.default.DBDriver = MySQLi
     database.default.DSN = 'mysql:dbname=jobsfree;host=localhost
 
-############################## HTTP REQUEST ############################## 
+######### HTTP REQUEST ###############
 
-##########################################################################
-#################### REGISTRASI DAN LOGIN ################################
-##########################################################################
+######################################
+####### REGISTRASI DAN LOGIN #########
+######################################
 ##Login
 1. url : http://localhost:8080/login/
 2. method: POST
@@ -31,9 +31,9 @@ basic configuration
 2. method : POST
 3. body/params: role_id, name, email, password, phone_no, idcard_no
 
-##########################################################################
-#################### LAPAK ###############################################
-##########################################################################
+###################################
+############ LAPAK ################
+###################################
 
 ##lapak (dapatkan semua data lapak)
 1. url : http://localhost:8080/lapak/
@@ -65,9 +65,9 @@ basic configuration
 2. method : DELETE
 3. body/params: -
 
-##########################################################################
-#################### USER ################################################
-##########################################################################
+#####################################
+############# USER ##################
+#####################################
 
 ##show user
 1. url : http://localhost:8080/user/$id
@@ -79,9 +79,9 @@ basic configuration
 2. method : PUT
 3. body/params: role_id, name, email, password, phone_no, idcard_no
 
-##########################################################################
-#################### TRANSAKSI ###########################################
-##########################################################################
+###############################
+######## TRANSAKSI ############
+###############################
 
 ##buat transaksi 
 1. url : http://localhost:8080/transaction
@@ -112,3 +112,5 @@ basic configuration
 3. body/params: status
 4. catatan: $id adalah id transaksi
 
+TODO 
+1. KIRIM MESSAGE PADA TRANSACTION/DONE
