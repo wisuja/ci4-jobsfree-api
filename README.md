@@ -73,7 +73,7 @@ basic configuration
 - Update user
 1. url : http://localhost:8080/user/$id
 2. method : PUT
-3. body/params: role_id, name, email,  phone_no, idcard_no
+3. body/params: name, email,  phone_no, idcard_no
 
 - Update Password
 1. url : http://localhost:8080/user/update_password/$id

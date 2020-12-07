@@ -52,15 +52,14 @@ class User extends ResourceController
         if (!$this->validate($rules)) {
             return $this->fail($this->validator->getErrors());
         } else {
+            $input = $this->request->getRawInput();
             $data = [
                 'id' => $id,
-                'role_id' =>  $this->request->getVar('role_id'),
-                'name' => $this->request->getVar('name'),
-                'email' => $this->request->getVar('email'),
-                'password' => $this->request->getVar('password'),
-                'image' => $this->request->getVar('image'),
-                'phone_no' => $this->request->getVar('phone_no'),
-                'idcard_no' => $this->request->getVar('idcard_no'),
+
+                'name' =>  $input['name'],
+                'email' =>  $input['email'],
+                'phone_no' =>  $input['phone_no'],
+                'idcard_no' =>  $input['idcard_no'],
                 'update_on' => date("Y-m-d H:i:s"),
             ];
 
