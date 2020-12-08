@@ -8,7 +8,7 @@ class LapakModel extends Model
 {
     protected $table = 'lapak';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['user_id', 'category_id', 'title', 'description', 'requirement', 'price_tag', 'working_hours', 'status', 'created_on'];
+    protected $allowedFields = ['user_id', 'category_id', 'title', 'description', 'requirement', 'price_tag', 'working_hours', 'status', 'created_on', 'update_on'];
 
     function getCategory($id)
     {
