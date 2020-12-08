@@ -55,7 +55,7 @@ class User extends ResourceController
             $input = $this->request->getRawInput();
             $data = [
                 'id' => $id,
-
+                'role_id' =>  $input['role_id'],
                 'name' =>  $input['name'],
                 'email' =>  $input['email'],
                 'phone_no' =>  $input['phone_no'],
