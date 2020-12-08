@@ -10,6 +10,16 @@ class LapakModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['user_id', 'category_id', 'title', 'description', 'requirement', 'price_tag', 'working_hours', 'status', 'created_on', 'update_on'];
 
+    function getdetail($id)
+    {
+        return $this->db->query("
+        SELECT lapak.*, categories.name as category_name, users.name as freelancer_name from lapak
+        INNER JOIN users ON lapak.user_id=users.id
+        INNER JOIN categories ON lapak.category_id = categories.id
+        WHERE lapak.id = '$id'
+        ")->getRowArray();
+    }
+
     function getCategory($id)
     {
         return $this->table('lapak')

@@ -37,7 +37,7 @@ class Lapak extends ResourceController
     //method: GET
     public function show($id = null)
     {
-        $data = $this->model->find($id);
+        $data = $this->model->getdetail($id);
         if ($data) {
             return $this->respond($data);
         } else {
@@ -75,6 +75,7 @@ class Lapak extends ResourceController
                 'requirement' => $this->request->getVar('requirement'),
                 'price_tag' => $this->request->getVar('price_tag'),
                 'working_hours' => $this->request->getVar('working_hours'),
+                'status' => $this->request->getVar('status'),
                 'created_on' => date("Y-m-d H:i:s"),
 
             ];
@@ -128,8 +129,8 @@ class Lapak extends ResourceController
     public function delete($id = null)
     {
         $data = $this->model->find($id);
-        $data['message'] = "Deleted id = $id";
         if ($data) {
+            $data['message'] = "Deleted id = $id";
             $this->model->delete($id);
             return $this->respond($data);
         } else {
