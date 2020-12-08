@@ -75,7 +75,7 @@ class Lapak extends ResourceController
                 'requirement' => $this->request->getVar('requirement'),
                 'price_tag' => $this->request->getVar('price_tag'),
                 'working_hours' => $this->request->getVar('working_hours'),
-                'status' => $this->request->getVar('status'),
+                'created_on' => date("Y-m-d H:i:s"),
 
             ];
             $post_id = $this->model->insert($data);
@@ -93,7 +93,13 @@ class Lapak extends ResourceController
         helper(['form']);
 
         $rules = [
-            'user_id' => 'required',
+            'category_id' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'requirement' => 'required',
+            'price_tag' => 'required',
+            'working_hours' => 'required',
+            'status' => 'required',
         ];
 
         if (!$this->validate($rules)) {
@@ -101,17 +107,16 @@ class Lapak extends ResourceController
         } else {
             $input = $this->request->getRawInput();
             $data = [
-                'user_id' => $this->request->getVar('user_id'),
-                'category_id' => $this->request->getVar('category_id'),
-                'title' => $this->request->getVar('title'),
-                'description' => $this->request->getVar('description'),
-                'requirement' => $this->request->getVar('requirement'),
-                'price_tag' => $this->request->getVar('price_tag'),
-                'working_hours' => $this->request->getVar('working_hours'),
+                'id' => $id,
+                'category_id' => $input['category_id'],
+                'title' => $input['title'],
+                'description' => $input['description'],
+                'requirement' => $input['requirement'],
+                'price_tag' => $input['price_tag'],
+                'working_hours' => $input['working_hours'],
                 'status' => $this->request->getVar('status'),
-                'creates_on' => $this->request->getVar('creates_on'),
+                'created_on' => date("Y-m-d H:i:s"),
             ];
-
             $this->model->save($data);
             return $this->respond($data);
         }
