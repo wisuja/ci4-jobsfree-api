@@ -111,3 +111,8 @@ basic configuration
 2. method : POST
 3. body/params: message
 4. catatan: $id adalah id transaksi
+
+1. perbaiki update sama delete lapak
+2. ganti /done jadi /submit
+3. buat /done utk client, body: status
+4. tambahin category name sama freelancer name di get /lapak/detail
