@@ -42,9 +42,11 @@ $routes->resource('login');
 $routes->get('lapak/category/(:segment)', 'Lapak::category/$1');
 $routes->resource('lapak');
 
+$routes->get('transaction/getcancel/(:segment)', 'Transaction::getcancel/$1');
 $routes->get('transaction/finish/(:segment)', 'Transaction::finish/$1');
 $routes->get('transaction/ongoing/(:segment)', 'Transaction::ongoing/$1');
 $routes->post('transaction/confirm/(:segment)', 'Transaction::confirm/$1');
+$routes->post('transaction/submit/(:segment)', 'Transaction::submit/$1');
 $routes->post('transaction/done/(:segment)', 'Transaction::done/$1');
 $routes->resource('transaction');
 
