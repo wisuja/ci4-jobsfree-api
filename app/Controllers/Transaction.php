@@ -78,10 +78,16 @@ class Transaction extends ResourceController
         }
     }
 
-    //konfirmasi pengerjaan untuk jasa. terima atau batal
+    //GET transaksi cancel
+    public function getcancel($id = null)
+    {
+    }
+
+    //konfirmasi pengerjaan untuk jasa. terima 
     //method : POST
     public function confirm($id = null)
     {
+
         helper(['form']);
 
         $rules = [
@@ -90,18 +96,33 @@ class Transaction extends ResourceController
         if (!$this->validate($rules)) {
             return $this->fail($this->validator->getErrors());
         } else {
-            $data = [
-                'id' => $id,
-                'accept' => $this->request->getVar('accept'),
-            ];
-            $this->model->save($data);
-            return $this->respond($data);
+            $d = $this->model->find($id);
+            if ($d) {
+                $data = [
+                    'id' => $id,
+                    'lapak_id' => $d['lapak_id'],
+                    'freelancer_id' => $d['freelancer_id'],
+                    'client_id' => $d['client_id'],
+                    'accept' => $this->request->getVar('accept'),
+                ];
+                $this->model->save($data);
+                if ($data['accept'] == '1') {
+                    $data['confirm_message'] = 'diterima';
+                } else if ($data['accept'] == '2') {
+                    $data['confirm_message'] = 'dibatalkan';
+                } else {
+                    $data['confirm_message'] = 'nilai 1 = diterima , nilai 2 = dibatalkan';
+                }
+                return $this->respond($data);
+            } else {
+                return $this->failNotFound('Item not Found');
+            }
         }
     }
 
-    //transaksi yang selesai
+    //kirim message selesai untuk freelancer
     //Method : POST
-    public function done($id = null)
+    public function submit($id = null)
     {
         helper(['form']);
 
@@ -111,11 +132,37 @@ class Transaction extends ResourceController
         if (!$this->validate($rules)) {
             return $this->fail($this->validator->getErrors());
         } else {
-          
+            $d = $this->model->get_Trans_User_Lapak($id);
             $data = [
                 'id' => $id,
-                'status' => 1,
+                'freelancer_name' => $d['freelancer_name'],
+                'client_name' => $d['client_name'],
                 'message' => $this->request->getVar('message'),
+                'finished_on' => date("Y-m-d H:i:s"),
+            ];
+            $this->model->save($data);
+            return $this->respond($data);
+        }
+    }
+
+    //transaksi yang selesai untuk client
+    //Method : POST
+    public function done($id = null)
+    {
+        helper(['form']);
+
+        $rules = [
+            'status' => 'required',
+        ];
+        if (!$this->validate($rules)) {
+            return $this->fail($this->validator->getErrors());
+        } else {
+            $d = $this->model->get_Trans_User_Lapak($id);
+            $data = [
+                'id' => $id,
+                'freelancer_name' => $d['freelancer_name'],
+                'client_name' => $d['client_name'],
+                'status' => $this->request->getVar('status'),
                 'finished_on' => date("Y-m-d H:i:s"),
             ];
             $this->model->save($data);
