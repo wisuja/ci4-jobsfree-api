@@ -19,7 +19,7 @@ class Lapak extends ResourceController
     //method: GET
     public function index()
     {
-        $data = $this->model->findAll();
+        $data = $this->model->getLapak();
         return $this->respond($data, 200);
     }
 
@@ -37,7 +37,7 @@ class Lapak extends ResourceController
     //method: GET
     public function show($id = null)
     {
-        $data = $this->model->getdetail($id);
+        $data = $this->model->getLapak($id);
         if ($data) {
             return $this->respond($data);
         } else {
@@ -61,7 +61,6 @@ class Lapak extends ResourceController
             'price_tag' => 'required',
             'working_hours' => 'required',
             'status' => 'required',
-
         ];
 
         if (!$this->validate($rules)) {
@@ -77,7 +76,6 @@ class Lapak extends ResourceController
                 'working_hours' => $this->request->getVar('working_hours'),
                 'status' => $this->request->getVar('status'),
                 'created_on' => date("Y-m-d H:i:s"),
-
             ];
             $post_id = $this->model->insert($data);
             $data['id'] = $post_id;
