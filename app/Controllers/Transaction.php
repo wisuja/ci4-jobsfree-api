@@ -3,15 +3,18 @@
 namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
+use App\Models\TransactionHModel;
 
 class Transaction extends ResourceController
 {
     protected $modelName = 'App\Models\TransactionModel';
     protected $format = 'json';
+    protected $TransactionHModel;
 
     public function __construct()
     {
         date_default_timezone_set("Asia/Jakarta");
+        $this->TransactionHModel = new TransactionHModel();
     }
 
     public function index()
@@ -106,6 +109,17 @@ class Transaction extends ResourceController
                     'accept' => $this->request->getVar('accept'),
                 ];
                 $this->model->save($data);
+                $data1 = [
+                    't_id' => $id,
+                    'lapak_id' => $d['lapak_id'],
+                    'freelancer_id' => $d['freelancer_id'],
+                    'client_id' => $d['client_id'],
+                    'payment_date' => $d['payment_date'],
+                    'payment_via' => $d['payment_via'],
+                    'accept' => $this->request->getVar('accept'),
+                    'creates_on' => date("Y-m-d H:i:s"),
+                ];
+                $this->TransactionHModel->insert($data1);
                 if ($data['accept'] == '1') {
                     $data['confirm_message'] = 'diterima';
                 } else if ($data['accept'] == '2') {
@@ -166,6 +180,18 @@ class Transaction extends ResourceController
                 'finished_on' => date("Y-m-d H:i:s"),
             ];
             $this->model->save($data);
+            $e = $this->model->find($id);
+            $data1 = [
+                't_id' => $id,
+                'lapak_id' => $e['lapak_id'],
+                'freelancer_id' => $e['freelancer_id'],
+                'client_id' => $e['client_id'],
+                'payment_date' => $e['payment_date'],
+                'payment_via' => $e['payment_via'],
+                'status' => $this->request->getVar('status'),
+                'creates_on' => date("Y-m-d H:i:s"),
+            ];
+            $this->TransactionHModel->insert($data1);
             return $this->respond($data);
         }
     }

@@ -9,7 +9,7 @@ class TransactionModel extends Model
 {
     protected $table = 'transactions';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['lapak_id', 'freelancer_id', 'client_id', 'payment_date', 'payment_via', 'accept', 'status', 'message', 'finished_on'];
+    protected $allowedFields = ['lapak_id', 'freelancer_id', 'client_id', 'payment_date', 'payment_via', 'accept', 'status', 'message', 'creates_on', 'finished_on'];
 
     public function get_Trans_User_Lapak($id)
     {
