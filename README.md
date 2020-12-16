@@ -15,7 +15,7 @@ API aplikasi Jobsfree
 
 basic configuration
 
-1.  import database dengan file sql pada folder sql/api_jobsfree.sql
+1.  import database dengan file sql pada folder public/api_jobsfree.sql
 2.  pergi ke file .env
 3.  sesuaikan baseurl pada baris app.baseURL = 'http://localhost:8080/'
 4.  sesuaikan user dan password database
