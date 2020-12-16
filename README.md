@@ -2,6 +2,13 @@
 
 - Link aplikasi Jobsfree : [React Native Application](https://github.com/wisuja/Jobsfree)
 
+Blue Team
+
+1. Andry (1831006)
+2. Rosita Tandiono (1831078)
+3. Tedy Fernando (1831077)
+4. William Surya Jaya (1831164)
+
 API aplikasi Jobsfree
 
 ######## CodeIgniter4 ##########
