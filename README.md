@@ -1,6 +1,6 @@
 # api_jobsfree
 
-- Link aplikasi Jobsfree : (React Native Application)[https://github.com/wisuja/Jobsfree]
+- Link aplikasi Jobsfree : [React Native Application](https://github.com/wisuja/Jobsfree)
 
 API aplikasi Jobsfree
 
