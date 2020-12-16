@@ -192,6 +192,7 @@ class Transaction extends ResourceController
                 'creates_on' => date("Y-m-d H:i:s"),
             ];
             $this->TransactionHModel->insert($data1);
+            $this->model->delete($id);
             return $this->respond($data);
         }
     }
